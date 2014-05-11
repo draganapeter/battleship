@@ -19,7 +19,7 @@ public class Board extends JPanel implements Runnable {
     public final int PANEL_WIDTH = 600;  // širina table
      public final int PANEL_HEIGHT = 600;  // Visina table
     
-    final Color BACKGROUND_COLOR = new Color(110,160,200);
+    final Color BACKGROUND_COLOR = new Color(0,250,107);
    
     
     public Board() {
@@ -39,6 +39,10 @@ public class Board extends JPanel implements Runnable {
      */
     @Override
         public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void startGame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
          
