@@ -6,8 +6,6 @@
 
 package potapanjebrodova1;
 
-import java.awt.Frame;
-
 /**
  *
  * @author S
