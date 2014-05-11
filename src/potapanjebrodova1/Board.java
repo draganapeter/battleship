@@ -20,7 +20,8 @@ public class Board extends JPanel implements Runnable {
      public final int PANEL_HEIGHT = 600;  // Visina table
     
     final Color BACKGROUND_COLOR = new Color(0,250,107);
-   
+  
+      
     
     public Board() {
        
@@ -29,14 +30,10 @@ public class Board extends JPanel implements Runnable {
         setFocusable(true);
         setFont(getFont().deriveFont(Font.BOLD, 18f));
         setDoubleBuffered(true);
-        
-        
-        
-}
+    
+    
+    }
 
-    /**
-     *
-     */
     @Override
         public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -45,5 +42,11 @@ public class Board extends JPanel implements Runnable {
     void startGame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
          
+    /**
+     *
+     */
+  
 }
