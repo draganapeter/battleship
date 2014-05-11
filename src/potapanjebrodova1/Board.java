@@ -30,8 +30,8 @@ public class Board extends JPanel implements Runnable {
         setFocusable(true);
         setFont(getFont().deriveFont(Font.BOLD, 18f));
         setDoubleBuffered(true);
-    
-    
+        
+       
     }
 
     @Override
