@@ -1,7 +1,12 @@
 package potapanjebrodova1;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +22,7 @@ public class Frame extends JFrame {
     
     public Frame() {
         add(board);
+        setJMenuBar(initMenu());
        
         pack();
         
@@ -29,6 +35,35 @@ public class Frame extends JFrame {
      
         
     }
+     final JMenuBar initMenu() {
+        // Napravimo liniju menija
+        JMenuBar menuBar = new JMenuBar();
+        
+        // Mapravimo meni
+        JMenu gameMenu = new JMenu("Game");
+        
+        // Napravimo stavku za meni
+        JMenuItem newGame = new JMenuItem("New game");
+        newGame.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.startGame();
+            }
+
+           
+        });
+        
+        // Dodamo stavku u meni
+        gameMenu.add(newGame);
+        
+        // Dodamo meni u liniju menija
+        menuBar.add(gameMenu);
+        
+        return menuBar;
+    }
+
+    
  
     }
     
