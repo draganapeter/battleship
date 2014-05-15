@@ -37,7 +37,7 @@ public class Board extends JPanel implements Runnable {
       
     // Objekti u igri
       Polje ball;
-   
+   Tabla tabla;
     String message;
     
     /**
@@ -59,6 +59,10 @@ public class Board extends JPanel implements Runnable {
                 
         runner = new Thread(this);
         runner.start();
+    }
+
+    Board(int[][] myfield) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
   
@@ -82,8 +86,7 @@ public class Board extends JPanel implements Runnable {
             // Iscrtaj sve objekte
 
             ball.draw(g2);
-                           
-
+          
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
 
