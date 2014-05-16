@@ -6,11 +6,14 @@
 
 package potapanjebrodova1;
 
+
+
 /**
  *
  * @author S
  */
 public class Tabla {
     
-    Polje[][] tabla = tabla;
+  
+   
 }
