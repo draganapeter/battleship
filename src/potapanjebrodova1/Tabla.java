@@ -30,6 +30,17 @@ public class Tabla extends JPanel implements Objects {
         }
       
   }
+  public Tabla(int a,int b){
+      
+      int ROWS = 10;
+      int COLS = 10;
+      polja = new Polje[ROWS][COLS];
+      for(int i = 0; i < ROWS; i++) {
+            for(int j = 0; j < COLS; j++) {
+                polja[i][j] = new Polje((800-30*i)/30, j);
+            }
+        }
+  }
   
 
     @Override
@@ -45,7 +56,10 @@ public class Tabla extends JPanel implements Objects {
             for(int j = 0; j < COLS; j++) {
                 polja[i][j].draw(g2);
             }
+         
     }
+
+    
 }
 }
    

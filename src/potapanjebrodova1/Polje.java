@@ -30,7 +30,7 @@ public class Polje extends Rectangle.Double implements Objects{
        
 
     
-    private final Color fillColor = Color.BLUE;
+    private final Color fillColor = new Color(0,124,255);
     private Color borderColor = Color.BLACK;
    
     private Rectangle.Double rectangleForDrawing;
@@ -42,7 +42,7 @@ public class Polje extends Rectangle.Double implements Objects{
         @Override
      public void draw(Graphics2D g2) {
         
-        rectangleForDrawing = new Rectangle2D.Double(ROW*25,COL*25,10,10);
+        rectangleForDrawing = new Rectangle2D.Double(ROW*30,COL*30,30,30);
        
         g2.setPaint(fillColor);
         g2.fill(rectangleForDrawing);

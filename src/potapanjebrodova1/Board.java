@@ -40,7 +40,8 @@ public class Board extends JPanel implements Runnable {
      
    
     String message;
-    Polje polje;
+    Tabla tabla;
+    Tabla tabla1;
     
     
     /**
@@ -59,8 +60,10 @@ public class Board extends JPanel implements Runnable {
         inGame = false;
         message = "BattleShip";
         
-        //add(tabla);
-       polje = new Polje(0,0);
+        
+        tabla = new Tabla();
+        tabla1 = new Tabla(600,600);
+       
                 
         runner = new Thread(this);
         runner.start();
@@ -89,7 +92,8 @@ public class Board extends JPanel implements Runnable {
             
             // Iscrtaj sve objekte
 
-            polje.draw(g2);
+            tabla.draw(g2);
+            tabla1.draw(g2);
                     
           
             // Sinhronizovanje sa grafičkom kartom
