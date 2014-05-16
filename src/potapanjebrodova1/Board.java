@@ -15,7 +15,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
-import java.util.Map;
 import javax.swing.JPanel;
 /**
 *
@@ -38,9 +37,11 @@ public class Board extends JPanel implements Runnable {
       Boolean inGame;
       
     // Objekti u igri
-      MakingAGrid tabla;
+     
    
     String message;
+    Polje polje;
+    
     
     /**
 * Podrazumjevani konstruktor. Postavlja veličinu table, boju pozadine i font,
@@ -48,7 +49,7 @@ public class Board extends JPanel implements Runnable {
 * radnu nit.
 */
     public Board() {
-        this.tabla = new MakingAGrid();
+      
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setBackground(BACKGROUND_COLOR);
         setFocusable(true);
@@ -58,8 +59,8 @@ public class Board extends JPanel implements Runnable {
         inGame = false;
         message = "BattleShip";
         
-        add(tabla);
-      
+        //add(tabla);
+       polje = new Polje(0,0);
                 
         runner = new Thread(this);
         runner.start();
@@ -88,7 +89,7 @@ public class Board extends JPanel implements Runnable {
             
             // Iscrtaj sve objekte
 
-           
+            polje.draw(g2);
                     
           
             // Sinhronizovanje sa grafičkom kartom
@@ -119,7 +120,7 @@ public class Board extends JPanel implements Runnable {
     void startGame() {
        inGame = true;
        
-       add(tabla);
+      // add(tabla);
     }
     
  
