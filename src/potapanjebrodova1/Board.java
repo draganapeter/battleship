@@ -13,7 +13,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.Toolkit;
+import java.util.Map;
 import javax.swing.JPanel;
 /**
 *
@@ -36,8 +38,8 @@ public class Board extends JPanel implements Runnable {
       Boolean inGame;
       
     // Objekti u igri
-      Polje ball;
-   Tabla tabla;
+      MakingAGrid tabla;
+   
     String message;
     
     /**
@@ -46,6 +48,7 @@ public class Board extends JPanel implements Runnable {
 * radnu nit.
 */
     public Board() {
+        this.tabla = new MakingAGrid();
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setBackground(BACKGROUND_COLOR);
         setFocusable(true);
@@ -55,15 +58,15 @@ public class Board extends JPanel implements Runnable {
         inGame = false;
         message = "BattleShip";
         
-        ball = new Polje(this);
+        add(tabla);
+      
                 
         runner = new Thread(this);
         runner.start();
+      
     }
 
-    Board(int[][] myfield) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
   
     @Override
@@ -81,11 +84,12 @@ public class Board extends JPanel implements Runnable {
             // Iscrtaj teren
 
             g2.drawRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-          
-
+      
+            
             // Iscrtaj sve objekte
 
-            ball.draw(g2);
+           
+                    
           
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -114,6 +118,8 @@ public class Board extends JPanel implements Runnable {
 
     void startGame() {
        inGame = true;
+       
+       add(tabla);
     }
     
  
