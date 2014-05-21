@@ -12,9 +12,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 /**
 *
@@ -31,9 +37,10 @@ public class Board extends JPanel implements Runnable {
 */
     public final int PANEL_HEIGHT = 800;
     
-    final Color BACKGROUND_COLOR = new Color(75,250,70);
+    final Color BACKGROUND_COLOR = Color.BLACK;
     final Thread runner;
     
+    private Image image;
       Boolean inGame;
       
     // Objekti u igri
@@ -42,6 +49,9 @@ public class Board extends JPanel implements Runnable {
     String message;
     Tabla tabla;
     Tabla tabla1;
+    
+    
+    
     
     
     /**
@@ -62,18 +72,19 @@ public class Board extends JPanel implements Runnable {
         
         
         tabla = new Tabla();
-        tabla1 = new Tabla(600,600);
+        tabla1 = new Tabla();
        
                 
         runner = new Thread(this);
         runner.start();
-      
-    }
+        
+        
 
-    
+                }
     
   
     @Override
+  
     public void paint(Graphics g) {
         super.paint(g);
              
@@ -88,12 +99,18 @@ public class Board extends JPanel implements Runnable {
             // Iscrtaj teren
 
             g2.drawRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
+            
+            //Iscrtaj sliku u pozadini
+            image = new ImageIcon(getClass().getResource("Sea.jpg")).getImage();
+            g2.drawImage(image, 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
       
             
             // Iscrtaj sve objekte
 
             tabla.draw(g2);
             tabla1.draw(g2);
+          
+            
                     
           
             // Sinhronizovanje sa grafičkom kartom
@@ -102,8 +119,8 @@ public class Board extends JPanel implements Runnable {
             // Optimizacija upotrebe RAM-a,
             g.dispose();
         } else {
-            int messageWidth = getFontMetrics(getFont()).stringWidth(message);
-            g2.drawString(message, PANEL_WIDTH/2 - messageWidth/2, PANEL_HEIGHT/2);
+           image = new ImageIcon(getClass().getResource("Battleship-review.JPG")).getImage();
+            g2.drawImage(image, 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
         }
     }
 
@@ -127,5 +144,12 @@ public class Board extends JPanel implements Runnable {
       // add(tabla);
     }
     
- 
-}
+  private class mouseClicked extends MouseAdapter {
+         
+     mouseClicked(MouseEvent e){
+         
+         
+     };
+         
+        }
+     }
