@@ -1,6 +1,5 @@
 package potapanjebrodova1;
 
-
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,31 +18,31 @@ import javax.swing.JMenuItem;
  * @author S
  */
 public class Frame extends JFrame {
+
     Board board = new Board();
-    
+
     public Frame() {
         add(board);
-       
+
         setJMenuBar(initMenu());
-       
+
         pack();
-        
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Potapanje Brodova");
         setVisible(true);
-        
-     
-        
+
     }
-     final JMenuBar initMenu() {
+
+    final JMenuBar initMenu() {
         // Napravimo liniju menija
         JMenuBar menuBar = new JMenuBar();
-        
+
         // Mapravimo meni
         JMenu gameMenu = new JMenu("Game");
-        
+
         // Napravimo stavku za meni
         JMenuItem newGame = new JMenuItem("New game");
         newGame.addActionListener(new ActionListener() {
@@ -53,20 +52,16 @@ public class Frame extends JFrame {
                 board.startGame();
             }
 
-           
         });
-        
+
         // Dodamo stavku u meni
         gameMenu.add(newGame);
-        
+
         // Dodamo meni u liniju menija
         menuBar.add(gameMenu);
-        
+
         return menuBar;
     }
 
-    
- 
-    }
-    
+}
 
