@@ -17,30 +17,23 @@ import javax.swing.JPanel;
  */
 public class Tabla extends JPanel implements Objects {
     
-  Polje[][] polja;
+  Polje[][] computer_table;
+  Polje[][] player_table;
   
   public Tabla(){
       int ROWS = 10;
       int COLS = 10;
-      polja = new Polje[ROWS][COLS];
+      computer_table = new Polje[ROWS][COLS];
+      player_table = new Polje[ROWS][COLS];
       for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLS; j++) {
-                polja[i][j] = new Polje(i, j);
+                computer_table[i][j] = new Polje(i, j);
+                player_table[i][j] = new Polje((800-30*i)/30, j);
             }
         }
       
   }
-  public Tabla(int a,int b){
-      
-      int ROWS = 10;
-      int COLS = 10;
-      polja = new Polje[ROWS][COLS];
-      for(int i = 0; i < ROWS; i++) {
-            for(int j = 0; j < COLS; j++) {
-                polja[i][j] = new Polje((800-30*i)/30, j);
-            }
-        }
-  }
+ 
   
 
     @Override
@@ -54,7 +47,8 @@ public class Tabla extends JPanel implements Objects {
       int COLS = 10;
     for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLS; j++) {
-                polja[i][j].draw(g2);
+                computer_table[i][j].draw(g2);
+                player_table[i][j].draw(g2);
             }
          
     }

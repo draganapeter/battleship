@@ -12,28 +12,39 @@ import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+
 /**
  *
  * @author S
  */
 public class Polje extends Rectangle.Double implements Objects{
 
+    enum Stanje { NEGADJANO, PROMASENO, POGODJENO }
+    
     private final int ROW;
     private final int COL;
+    
+    private Stanje stanje; 
+    
     public Polje(int r, int c){
         ROW=r;
         COL=c;
+        this.stanje = Stanje.NEGADJANO;
     }
+    
+    private Color bojapromasenog = Color.WHITE;
+    private Color bojapogodjenog = Color.RED;
+    private Color borderColor = Color.BLACK;
+   
+    private Rectangle.Double rectangleForDrawing;
+  
     
     public int x;
     public int y;
        
 
     
-    private final Color fillColor = new Color(0,124,255);
-    private Color borderColor = Color.BLACK;
    
-    private Rectangle.Double rectangleForDrawing;
     
   
 
@@ -44,7 +55,7 @@ public class Polje extends Rectangle.Double implements Objects{
         
         rectangleForDrawing = new Rectangle2D.Double(ROW*30,COL*30,30,30);
        
-        g2.setPaint(fillColor);
+        g2.setPaint(bojapromasenog);
         g2.fill(rectangleForDrawing);
         
         g2.setPaint(borderColor);
