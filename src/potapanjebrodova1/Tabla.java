@@ -14,21 +14,32 @@ import javax.swing.JPanel;
  */
 public class Tabla extends JPanel implements Objects {
 
-    Polje[][] computer_table;
-    Polje[][] player_table;
+    Polje[][] polja;
+    
+    final int ROWS;
+    final int COLS;
 
-    public Tabla() {
-        int ROWS = 10;
-        int COLS = 10;
-        computer_table = new Polje[ROWS][COLS];
-        player_table = new Polje[ROWS][COLS];
+    public Tabla(int x, int y) {
+        ROWS = 10;
+        COLS = 10;
+        
+        polja = new Polje[ROWS][COLS];
+        
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                computer_table[i][j] = new Polje(i, j);
-                player_table[i][j] = new Polje((800 - 30 * i) / 30, j);
+                polja[i][j] = new Polje(i, j);
             }
         }
 
+    }
+    
+    public void checkForHit(int x, int y) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if(polja[i][j].contains(x, y))
+                    polja[i][j].Gadjaj();
+            }
+        }
     }
 
     @Override
@@ -37,11 +48,8 @@ public class Tabla extends JPanel implements Objects {
         int COLS = 10;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                computer_table[i][j].draw(g2);
-                player_table[i][j].draw(g2);
+                polja[i][j].draw(g2);
             }
-
         }
-
     }
 }

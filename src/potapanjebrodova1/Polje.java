@@ -19,42 +19,45 @@ public class Polje extends Rectangle.Double implements Objects {
 
     enum Stanje {
 
-        NEGADJANO, PROMASENO, POGODJENO
+        NEGADJANO, GADJANO
     }
-
-    private final int ROW;
-    private final int COL;
 
     private Stanje stanje;
 
-    public Polje(int r, int c) {
-        ROW = r;
-        COL = c;
+    public Polje(int row, int col) {
         this.stanje = Stanje.NEGADJANO;
+        x = row * 30;
+        y = col * 30;
+        width = height = 30;
     }
 
-    private Color bojapromasenog = Color.WHITE;
-    private Color bojapogodjenog = Color.RED;
-    private Color borderColor = Color.BLACK;
+    public void Gadjaj() {
 
-    private Rectangle.Double rectangleForDrawing;
+        if (stanje == Stanje.NEGADJANO) {
+            stanje = Stanje.GADJANO;
+            
+            //System.out.println("POGODAK!");
+        }
 
-    public int x;
-    public int y;
-
+    }
+    
+    private final Color bojapromasenog = Color.WHITE;
+    private final Color bojapogodjenog = Color.RED;
+    private final Color borderColor = Color.BLUE;
+    
     @Override
     public void draw(Graphics2D g2) {
 
-        rectangleForDrawing = new Rectangle2D.Double(ROW * 30, COL * 30, 30, 30);
-
-        g2.setPaint(bojapromasenog);
-        g2.fill(rectangleForDrawing);
+        if (stanje == Stanje.GADJANO) {
+            g2.setPaint(bojapromasenog);
+            g2.fill(this);
+        } else if (stanje == Stanje.NEGADJANO) {
+            g2.setPaint(bojapogodjenog);
+            g2.fill(this);
+        }
 
         g2.setPaint(borderColor);
-        g2.draw(rectangleForDrawing);
+        g2.draw(this);
+
     }
-
 }
-     
-
-    
