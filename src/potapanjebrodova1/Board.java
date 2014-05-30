@@ -26,7 +26,7 @@ import javax.swing.JPanel;
  *
  * @author Administrator
  */
-public class Board extends JPanel implements Runnable {
+public class Board extends JPanel {
 
     /**
      * Širina table
@@ -38,9 +38,9 @@ public class Board extends JPanel implements Runnable {
     public final int PANEL_HEIGHT = 800;
 
     final Color BACKGROUND_COLOR = Color.BLACK;
-    final Thread runner;
 
-    private Image image;
+    private ImageIcon seaImageIcon;
+    private ImageIcon battleShipImageIcon;
     Boolean inGame;
 
     // Objekti u igri
@@ -60,15 +60,16 @@ public class Board extends JPanel implements Runnable {
         setFocusable(true);
         setFont(getFont().deriveFont(Font.BOLD, 18f));
         setDoubleBuffered(true);
+        addMouseListener(new HitListener());
 
         inGame = false;
         message = "BattleShip";
 
-        tabla = new Tabla();
-        tabla1 = new Tabla();
+        tabla = new Tabla(0, 0);
+        tabla1 = new Tabla(0, 0);
 
-        runner = new Thread(this);
-        runner.start();
+        seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
+        battleShipImageIcon = new ImageIcon(getClass().getResource("Battleship-review.JPG"));
 
     }
 
@@ -89,12 +90,11 @@ public class Board extends JPanel implements Runnable {
             g2.drawRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 
             //Iscrtaj sliku u pozadini
-            image = new ImageIcon(getClass().getResource("Sea.jpg")).getImage();
-            g2.drawImage(image, 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
+            g2.drawImage(seaImageIcon.getImage(), 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
 
             // Iscrtaj sve objekte
             tabla.draw(g2);
-            tabla1.draw(g2);
+            //tabla1.draw(g2);
 
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -102,37 +102,29 @@ public class Board extends JPanel implements Runnable {
             // Optimizacija upotrebe RAM-a,
             g.dispose();
         } else {
-            image = new ImageIcon(getClass().getResource("Battleship-review.JPG")).getImage();
-            g2.drawImage(image, 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
+            g2.drawImage(battleShipImageIcon.getImage(), 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
         }
     }
 
     private void update() {
-        //ball.move();
 
-    }
-
-    @Override
-    public void run() {
-
-        while (true) {
-            update();
-            repaint();
-        }
     }
 
     void startGame() {
         inGame = true;
-
-        // add(tabla);
+        repaint();
     }
 
-    private class mouseClicked extends MouseAdapter {
+    private class HitListener extends MouseAdapter {
 
-        mouseClicked(MouseEvent e) {
-
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            
+            //System.out.println("kliknuto na: " + e.getX() + ", " + e.getY());
+            
+            tabla.checkForHit(e.getX(), e.getY());
+            repaint();
         }
-    ;
-
-}
+        
+    }
 }
