@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
 /**
  *
@@ -22,10 +23,20 @@ public class Polje extends Rectangle.Double implements Objects {
         NEGADJANO, GADJANO
     }
 
+    boolean imaBrod;
+   
+    Random r;
+    
     private Stanje stanje;
 
     public Polje(int row, int col) {
+        
+         r = new Random();
+       
         this.stanje = Stanje.NEGADJANO;
+       
+        this.imaBrod = r.nextBoolean();
+       
         x = row * 30;
         y = col * 30;
         width = height = 30;
@@ -40,19 +51,23 @@ public class Polje extends Rectangle.Double implements Objects {
         }
 
     }
+    private final Color bojaPromasenog = new Color(72,118,255);
+    private final Color bojaPogodjenog = Color.RED;
+    private final Color borderColor = Color.BLACK;
+    private final Color pocetna = Color.BLUE;
     
-    private final Color bojapromasenog = Color.WHITE;
-    private final Color bojapogodjenog = Color.RED;
-    private final Color borderColor = Color.BLUE;
+    
     
     @Override
     public void draw(Graphics2D g2) {
-
-        if (stanje == Stanje.GADJANO) {
-            g2.setPaint(bojapromasenog);
+        if (stanje == Stanje.GADJANO && imaBrod == true) {
+            g2.setPaint(bojaPogodjenog);
+            g2.fill(this);
+        } else if (stanje == Stanje.GADJANO && imaBrod == false) {
+            g2.setPaint(bojaPromasenog);
             g2.fill(this);
         } else if (stanje == Stanje.NEGADJANO) {
-            g2.setPaint(bojapogodjenog);
+            g2.setPaint(pocetna);
             g2.fill(this);
         }
 
