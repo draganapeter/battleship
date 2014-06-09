@@ -96,8 +96,6 @@ public class Board extends JPanel {
             // Iscrtaj sve objekte
             tabla.draw(g2);
             tabla1.draw(g2);
-           
-            
 
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -111,7 +109,6 @@ public class Board extends JPanel {
 
     private void update() {
     }
-    
 
     void startGame() {
         inGame = true;
@@ -122,12 +119,13 @@ public class Board extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            
+
             //System.out.println("kliknuto na: " + e.getX() + ", " + e.getY());
-            
             tabla.checkForHit(e.getX(), e.getY());
             repaint();
+            tabla1.postaviBrod(e.getX(), e.getY());
+            repaint();
         }
-        
+
     }
 }
