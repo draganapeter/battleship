@@ -7,9 +7,7 @@ package potapanjebrodova1;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 /**
@@ -24,19 +22,18 @@ public class Polje extends Rectangle.Double implements Objects {
     }
 
     boolean imaBrod;
-   
+
     Random r;
-    
+
     private Stanje stanje;
 
     public Polje(int row, int col) {
-        
-         r = new Random();
-       
+
+        r = new Random();
+
         this.stanje = Stanje.NEGADJANO;
-       
         this.imaBrod = r.nextBoolean();
-       
+
         x = row * 30;
         y = col * 30;
         width = height = 30;
@@ -46,18 +43,16 @@ public class Polje extends Rectangle.Double implements Objects {
 
         if (stanje == Stanje.NEGADJANO) {
             stanje = Stanje.GADJANO;
-            
+
             //System.out.println("POGODAK!");
         }
 
     }
-    private final Color bojaPromasenog = new Color(72,118,255);
+    private final Color bojaPromasenog = new Color(72, 118, 255);
     private final Color bojaPogodjenog = Color.RED;
     private final Color borderColor = Color.BLACK;
     private final Color pocetna = Color.BLUE;
-    
-    
-    
+
     @Override
     public void draw(Graphics2D g2) {
         if (stanje == Stanje.GADJANO && imaBrod == true) {

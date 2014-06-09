@@ -27,9 +27,10 @@ public class Tabla extends JPanel implements Objects {
         
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                polja[i][j] = new Polje(i, j);
+                polja[i][j] = new Polje((x+30*i)/30,(y+30*j)/30);
             }
         }
+        
 
     }
     

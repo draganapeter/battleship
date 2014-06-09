@@ -47,6 +47,7 @@ public class Board extends JPanel {
     String message;
     Tabla tabla;
     Tabla tabla1;
+    Polje polje;
 
     /**
      * Podrazumjevani konstruktor. Postavlja veličinu table, boju pozadine i
@@ -66,7 +67,7 @@ public class Board extends JPanel {
         message = "BattleShip";
 
         tabla = new Tabla(0, 0);
-        tabla1 = new Tabla(0, 0);
+        tabla1 = new Tabla(530, 0);
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
         battleShipImageIcon = new ImageIcon(getClass().getResource("Battleship-review.JPG"));
@@ -94,7 +95,9 @@ public class Board extends JPanel {
 
             // Iscrtaj sve objekte
             tabla.draw(g2);
-            //tabla1.draw(g2);
+            tabla1.draw(g2);
+           
+            
 
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -107,8 +110,8 @@ public class Board extends JPanel {
     }
 
     private void update() {
-
     }
+    
 
     void startGame() {
         inGame = true;
