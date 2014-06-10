@@ -29,10 +29,10 @@ public class Polje extends Rectangle.Double implements Objects {
 
     public Polje(int row, int col) {
 
-        r = new Random();
+       // r = new Random();
 
         this.stanje = Stanje.NEGADJANO;
-        this.imaBrod = r.nextBoolean();
+        //this.imaBrod = r.nextBoolean();
 
         x = row * 30;
         y = col * 30;

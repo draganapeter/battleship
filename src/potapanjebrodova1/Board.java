@@ -67,6 +67,7 @@ public class Board extends JPanel {
         message = "BattleShip";
 
         tabla = new Tabla(0, 0);
+        tabla.postavljanjeBrodova();
         tabla1 = new Tabla(530, 0);
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
@@ -128,4 +129,5 @@ public class Board extends JPanel {
         }
 
     }
+   
 }

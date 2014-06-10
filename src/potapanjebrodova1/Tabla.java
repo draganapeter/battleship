@@ -6,8 +6,12 @@
 package potapanjebrodova1;
 
 import java.awt.Graphics2D;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 import javax.swing.JPanel;
-
+import java.util.Random;
 /**
  *
  * @author s
@@ -15,9 +19,14 @@ import javax.swing.JPanel;
 public class Tabla extends JPanel implements Objects {
 
     Polje[][] polja;
+    
+ 
+    
+  
 
     final int ROWS;
     final int COLS;
+   
 
     public Tabla(int x, int y) {
         ROWS = 10;
@@ -50,6 +59,31 @@ public class Tabla extends JPanel implements Objects {
             }
             }
         }
+    }
+    public void postavljanjeBrodova ()
+    {
+        Random r;
+        r = new Random();
+        List <Polje> E;
+        E = new ArrayList <>();
+        Set <Polje> Res;
+        Res = new HashSet<>();
+      for (int i=0;i<10;i++)
+          for (int j=0;j<10;j++)
+              E.add(polja[i][j]);
+      while (Res.size()<10){
+          int randPos = r.nextInt(100);
+          Res.add(E.get(randPos));}
+          for (int i=0;i<10;i++)
+          for (int j=0;j<10;j++)
+          {
+              polja[i][j].imaBrod = Res.contains (polja[i][j]);
+              
+          
+      }
+      
+              
+      
     }
     @Override
     public void draw(Graphics2D g2) {
