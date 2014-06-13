@@ -69,6 +69,7 @@ public class Board extends JPanel {
         tabla = new Tabla(0, 0);
         tabla.postavljanjeBrodova();
         tabla1 = new Tabla(530, 0);
+        tabla1.postavljanjeBrodova();
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
         battleShipImageIcon = new ImageIcon(getClass().getResource("Battleship-review.JPG"));
@@ -124,8 +125,16 @@ public class Board extends JPanel {
             //System.out.println("kliknuto na: " + e.getX() + ", " + e.getY());
             tabla.checkForHit(e.getX(), e.getY());
             repaint();
-            tabla1.postaviBrod(e.getX(), e.getY());
-            repaint();
+            //try{
+            //Thread.sleep(2000);
+            //}catch(InterruptedException ex){
+               // Thread.currentThread().interrupt();
+            
+            //}
+            tabla1.gadjanjeKomp();
+            
+            
+            
         }
 
     }

@@ -6,16 +6,14 @@
 package potapanjebrodova1;
 
 import java.awt.Graphics2D;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
 import java.util.ArrayList;
-import javax.swing.JPanel;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
-/**
- *
- * @author s
- */
+import java.util.Set;
+import javax.swing.JPanel;
+import potapanjebrodova1.Polje.Stanje;
+
 public class Tabla extends JPanel implements Objects {
 
     Polje[][] polja;
@@ -81,9 +79,25 @@ public class Tabla extends JPanel implements Objects {
               
           
       }
-      
-              
-      
+    }
+
+    /**
+     *
+     */
+    public void gadjanjeKomp (){
+    
+        Random r;
+        r = new Random();
+        List <Polje> E;
+        E = new ArrayList <>();
+        for (int i=0; i<10; i++)
+            for (int j=0; j<10; j++) 
+                if (polja[i][j].stanje==Stanje.NEGADJANO)
+                E.add(polja[i][j]);
+        Set <Polje> Res;
+        Res = new HashSet<>();
+            int RandPos = r.nextInt(E.size());
+            E.get(RandPos).Gadjaj();
     }
     @Override
     public void draw(Graphics2D g2) {

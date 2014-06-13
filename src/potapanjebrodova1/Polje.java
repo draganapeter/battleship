@@ -25,7 +25,7 @@ public class Polje extends Rectangle.Double implements Objects {
 
     Random r;
 
-    private Stanje stanje;
+    public Stanje stanje;
 
     public Polje(int row, int col) {
 
@@ -52,6 +52,7 @@ public class Polje extends Rectangle.Double implements Objects {
     private final Color bojaPogodjenog = Color.RED;
     private final Color borderColor = Color.BLACK;
     private final Color pocetna = Color.BLUE;
+    private final Color bojapostavljenog = Color.GREEN;
 
     @Override
     public void draw(Graphics2D g2) {
