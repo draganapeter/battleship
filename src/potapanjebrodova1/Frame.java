@@ -1,6 +1,7 @@
 package potapanjebrodova1;
 
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -52,10 +53,21 @@ public class Frame extends JFrame {
                 board.startGame();
             }
 
-        });
+        }
+        );
+        JMenuItem setShips = new JMenuItem("Set Ships!");
+        setShips.addActionListener (new ActionListener(){
+           
+            @Override
+            public void actionPerformed(ActionEvent e){
+                board.PostaviBrodove();
+            }
+        }
+        );
 
         // Dodamo stavku u meni
         gameMenu.add(newGame);
+        gameMenu.add(setShips);
 
         // Dodamo meni u liniju menija
         menuBar.add(gameMenu);

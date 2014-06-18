@@ -21,7 +21,7 @@ public class Polje extends Rectangle.Double implements Objects {
         NEGADJANO, GADJANO
     }
 
-    boolean imaBrod;
+    boolean imaBrod, brodpostavljen;
 
     Random r;
 
@@ -62,10 +62,14 @@ public class Polje extends Rectangle.Double implements Objects {
         } else if (stanje == Stanje.GADJANO && imaBrod == false) {
             g2.setPaint(bojaPromasenog);
             g2.fill(this);
-        } else if (stanje == Stanje.NEGADJANO) {
+        } else if (stanje == Stanje.NEGADJANO && brodpostavljen == false) {
             g2.setPaint(pocetna);
             g2.fill(this);
+        } else if (stanje == Stanje.NEGADJANO && brodpostavljen == true) {
+            g2.setPaint(bojapostavljenog);
+            g2.fill(this);
         }
+        
 
         g2.setPaint(borderColor);
         g2.draw(this);

@@ -6,6 +6,8 @@
 package potapanjebrodova1;
 
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -49,11 +51,29 @@ public class Tabla extends JPanel implements Objects {
             }
         }
     }
+
+    /**
+     *
+     * @return
+     */
+    public boolean imaProstora ()
+    {
+         List <Polje> E;
+          Set <Polje> Res;
+        Res = new HashSet<>(); 
+     E = new ArrayList <>();
+        for (int i=0; i<10; i++)
+            for (int j=0; j<10; j++) 
+                if (polja[i][j].imaBrod==true)
+        Res.add(polja[i][j]);
+        return Res.size()<10;
+         }
     public void postaviBrod (int x, int y) {
         for (int i=0; i<ROWS; i++) {
             for (int j=0; j<COLS; j++){
                 if (polja[i][j].contains(x,y)){
-                polja[i][j].imaBrod=true;
+                    {polja[i][j].imaBrod=true;
+                polja[i][j].brodpostavljen=true;}
             }
             }
         }
