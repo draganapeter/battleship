@@ -7,6 +7,7 @@ package potapanjebrodova1;
  * and open the template in the editor.
  */
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -20,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -35,9 +37,10 @@ public class Board extends JPanel {
     /**
      * Visina table
      */
-    public final int PANEL_HEIGHT = 800;
+    public final int PANEL_HEIGHT = 300;
 
     final Color BACKGROUND_COLOR = Color.BLACK;
+    static String message2 = "";
 
     private ImageIcon seaImageIcon;
     private ImageIcon battleShipImageIcon;
@@ -49,6 +52,7 @@ public class Board extends JPanel {
     Tabla tabla;
     Tabla tabla1;
     Polje polje;
+    JButton setShipsbutton;
 
     /**
      * Podrazumjevani konstruktor. Postavlja veličinu table, boju pozadine i
@@ -56,21 +60,26 @@ public class Board extends JPanel {
      * pokreće radnu nit.
      */
     public Board() {
-
+        this.setShipsbutton = new JButton("Postavi brodove");
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        
         setBackground(BACKGROUND_COLOR);
         setFocusable(true);
         setFont(getFont().deriveFont(Font.BOLD, 18f));
         setDoubleBuffered(true);
         addMouseListener(new HitListener());
+        
 
         inGame = false;
         postavljanjebrodova = false;
         message = "BattleShip";
+       
 
         tabla = new Tabla(0, 0);
         tabla.postavljanjeBrodova();
         tabla1 = new Tabla(530, 0);
+       
+        
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
         battleShipImageIcon = new ImageIcon(getClass().getResource("Battleship-review.JPG"));
@@ -86,7 +95,7 @@ public class Board extends JPanel {
 
         if (postavljanjebrodova==false && inGame) {
             // Savjeti pri iscrtavanju
-
+ 
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -99,6 +108,7 @@ public class Board extends JPanel {
             // Iscrtaj sve objekte
             tabla.draw(g2);
             tabla1.draw(g2);
+           
 
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -121,6 +131,11 @@ public class Board extends JPanel {
             // Iscrtaj sve objekte
             
             tabla1.draw(g2);
+            if(tabla1.prebrojavanjeBrodova()==10)
+            g2.drawString("Postavite 10 brodova!",30,30);
+            else
+            g2.drawString("Ostalo je jos " +tabla1.prebrojavanjeBrodova()+ " brodova da postavite.",30,30);
+           
 
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
@@ -134,14 +149,15 @@ public class Board extends JPanel {
     }
 
     void startGame() {
-        inGame = true;
-        postavljanjebrodova = false;
-        repaint();
+        inGame = false;
+        postavljanjebrodova = true;
+       
+       repaint();
     }
 
    
     public void PostaviBrodove(){
-       postavljanjebrodova=true;
+     
        repaint();
       
     }
@@ -162,6 +178,7 @@ public class Board extends JPanel {
                
                 tabla1.postaviBrod(e.getX(),e.getY());
             repaint();
+          
                 
             
             }
