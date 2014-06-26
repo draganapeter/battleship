@@ -60,7 +60,7 @@ public class Board extends JPanel {
      * pokreće radnu nit.
      */
     public Board() {
-        this.setShipsbutton = new JButton("Postavi brodove");
+        this.setShipsbutton = new JButton("Pocni igru");
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         
         setBackground(BACKGROUND_COLOR);
@@ -78,7 +78,8 @@ public class Board extends JPanel {
         tabla = new Tabla(0, 0);
         tabla.postavljanjeBrodova();
         tabla1 = new Tabla(530, 0);
-       
+       if (tabla1.prebrojavanjeBrodova()-10==0)
+           add (setShipsbutton);
         
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
