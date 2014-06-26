@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,9 +22,11 @@ import javax.swing.JMenuItem;
 public class Frame extends JFrame {
 
     Board board = new Board();
-
+    JButton setShipsbutton = new JButton("Start");
+    
     public Frame() {
         add(board);
+      
 
         setJMenuBar(initMenu());
 
@@ -55,24 +58,18 @@ public class Frame extends JFrame {
 
         }
         );
-        JMenuItem setShips = new JMenuItem("Set Ships!");
-        setShips.addActionListener (new ActionListener(){
-           
-            @Override
-            public void actionPerformed(ActionEvent e){
-                board.PostaviBrodove();
-            }
-        }
-        );
+       
+       
 
         // Dodamo stavku u meni
         gameMenu.add(newGame);
-        gameMenu.add(setShips);
+       
 
         // Dodamo meni u liniju menija
         menuBar.add(gameMenu);
 
         return menuBar;
+        
     }
 
 }

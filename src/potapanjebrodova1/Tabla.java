@@ -56,6 +56,20 @@ public class Tabla extends JPanel implements Objects {
      *
      * @return
      */
+    public int prebrojavanjeBrodova ()
+    {
+     List <Polje> E;
+          Set <Polje> Res;
+        Res = new HashSet<>(); 
+     E = new ArrayList <>();
+        for (int i=0; i<10; i++)
+            for (int j=0; j<10; j++) 
+                if (polja[i][j].imaBrod==true)
+        Res.add(polja[i][j]);
+        return 10-Res.size();
+            
+    }
+    
     public boolean imaProstora ()
     {
          List <Polje> E;
