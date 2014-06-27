@@ -20,40 +20,34 @@ public class Tabla extends JPanel implements Objects {
 
     Polje[][] polja;
     
- 
-    
-  
-
-    final int ROWS;
-    final int COLS;
+    final int REDOVI;
+    final int KOLONE;
    
 
     public Tabla(int x, int y) {
-        ROWS = 10;
-        COLS = 10;
+        REDOVI = 10;
+        KOLONE = 10;
 
-        polja = new Polje[ROWS][COLS];
+        polja = new Polje[REDOVI][KOLONE];
 
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
+        for (int i = 0; i < REDOVI; i++) {
+            for (int j = 0; j < KOLONE; j++) {
                 polja[i][j] = new Polje((x + 30 * i) / 30, (y + 30 * j) / 30);
             }
         }
 
     }
 
-    public boolean checkForHit(int x, int y) {
+    public boolean ProvjeraZaGdjanje(int x, int y) {
        int b=0;
-        for (int i = 0; i < ROWS; i++) 
-            for (int j = 0; j < COLS; j++) 
+        for (int i = 0; i < REDOVI; i++) 
+            for (int j = 0; j < KOLONE; j++) 
                 if (polja[i][j].contains(x, y) && polja[i][j].gadjano==false) {
                     b=b+1;
                     polja[i][j].Gadjaj();
-                  
+                  //da izbjegnemo gadjanje vec gadjanog polja,i mjesta van table
                 }
-        
-            
-        
+       
         return b==1;
     }
    
@@ -76,10 +70,7 @@ public class Tabla extends JPanel implements Objects {
             
     }
     
-    /**
-     *
-     * @return
-     */
+   
     public int prebrojavanjepotopljenih ()
     {
      List <Polje> E;
@@ -94,21 +85,10 @@ public class Tabla extends JPanel implements Objects {
             
     }
      
-    public boolean imaProstora ()
-    {
-         List <Polje> E;
-          Set <Polje> Res;
-        Res = new HashSet<>(); 
-     E = new ArrayList <>();
-        for (int i=0; i<10; i++)
-            for (int j=0; j<10; j++) 
-                if (polja[i][j].imaBrod==true)
-        Res.add(polja[i][j]);
-        return Res.size()<10;
-         }
+    
     public void postaviBrod (int x, int y) {
-        for (int i=0; i<ROWS; i++) {
-            for (int j=0; j<COLS; j++){
+        for (int i=0; i<REDOVI; i++) {
+            for (int j=0; j<KOLONE; j++){
                 if (polja[i][j].contains(x,y)){
                     {polja[i][j].imaBrod=true;
                 polja[i][j].brodpostavljen=true;}
@@ -139,9 +119,7 @@ public class Tabla extends JPanel implements Objects {
       }
     }
 
-    /**
-     *
-     */
+    
     public void gadjanjeKomp (){
     
         Random r;
