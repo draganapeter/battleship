@@ -22,10 +22,14 @@ import javax.swing.JMenuItem;
 public class Frame extends JFrame {
 
     Board board = new Board();
-    JButton setShipsbutton = new JButton("Start");
-    
+  
+    JButton pocniIgru;
+  
     public Frame() {
+       
         add(board);
+        
+       
       
 
         setJMenuBar(initMenu());
@@ -54,6 +58,7 @@ public class Frame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.startGame();
+                
             }
 
         }

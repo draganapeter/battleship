@@ -66,7 +66,7 @@ public class Tabla extends JPanel implements Objects {
             for (int j=0; j<10; j++) 
                 if (polja[i][j].imaBrod==true)
         Res.add(polja[i][j]);
-        return 10-Res.size();
+        return Res.size();
             
     }
     

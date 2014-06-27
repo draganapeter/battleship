@@ -16,6 +16,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -39,20 +41,21 @@ public class Board extends JPanel {
      */
     public final int PANEL_HEIGHT = 300;
 
-    final Color BACKGROUND_COLOR = Color.BLACK;
-    static String message2 = "";
+    final Color BACKGROUND_COLOR = Color.ORANGE;
+ 
 
     private ImageIcon seaImageIcon;
     private ImageIcon battleShipImageIcon;
     Boolean inGame;
     Boolean postavljanjebrodova;
+    
 
     // Objekti u igri
     String message;
     Tabla tabla;
     Tabla tabla1;
     Polje polje;
-    JButton setShipsbutton;
+    JButton pocniIgru;
 
     /**
      * Podrazumjevani konstruktor. Postavlja veličinu table, boju pozadine i
@@ -60,9 +63,10 @@ public class Board extends JPanel {
      * pokreće radnu nit.
      */
     public Board() {
-        this.setShipsbutton = new JButton("Pocni igru");
-        setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         
+        
+        setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        setLayout(null);
         setBackground(BACKGROUND_COLOR);
         setFocusable(true);
         setFont(getFont().deriveFont(Font.BOLD, 18f));
@@ -73,18 +77,39 @@ public class Board extends JPanel {
         inGame = false;
         postavljanjebrodova = false;
         message = "BattleShip";
-       
+        pocniIgru = new JButton ("Pocni Igru");
+        
 
         tabla = new Tabla(0, 0);
         tabla.postavljanjeBrodova();
         tabla1 = new Tabla(530, 0);
-       if (tabla1.prebrojavanjeBrodova()-10==0)
-           add (setShipsbutton);
+        pocniIgru.setBounds(330,0,150,30);
+        
+        pocniIgru.addActionListener(new ActionListener(){
+            
+        @Override
+        public void actionPerformed (ActionEvent e) {
+            inGame=true;
+            postavljanjebrodova=false;
+            repaint();
+        }
+
+          
+
+            
+    });
+        
+          
+   
+        
+     
+  
+      
         
 
         seaImageIcon = new ImageIcon(getClass().getResource("Sea.jpg"));
         battleShipImageIcon = new ImageIcon(getClass().getResource("Battleship-review.JPG"));
-
+       
     }
 
     @Override
@@ -94,7 +119,7 @@ public class Board extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        if (postavljanjebrodova==false && inGame) {
+        if (postavljanjebrodova==false && inGame==true) {
             // Savjeti pri iscrtavanju
  
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -104,7 +129,7 @@ public class Board extends JPanel {
             g2.drawRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 
             //Iscrtaj sliku u pozadini
-            g2.drawImage(seaImageIcon.getImage(), 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
+          
 
             // Iscrtaj sve objekte
             tabla.draw(g2);
@@ -127,17 +152,16 @@ public class Board extends JPanel {
             g2.drawRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 
             //Iscrtaj sliku u pozadini
-            g2.drawImage(seaImageIcon.getImage(), 0, 0, PANEL_WIDTH, PANEL_HEIGHT, null);
+           
 
             // Iscrtaj sve objekte
             
             tabla1.draw(g2);
-            if(tabla1.prebrojavanjeBrodova()==10)
-            g2.drawString("Postavite 10 brodova!",30,30);
-            else
-            g2.drawString("Ostalo je jos " +tabla1.prebrojavanjeBrodova()+ " brodova da postavite.",30,30);
-           
-
+            if(tabla1.prebrojavanjeBrodova()==0)
+            g2.drawString("Postavite 10 brodova!",30,60);
+            else if((tabla1.prebrojavanjeBrodova()>0) && (tabla1.prebrojavanjeBrodova() <10)  )
+            g2.drawString("Ostalo je jos " +(10-tabla1.prebrojavanjeBrodova())+ " brodova da postavite.",30,60);
+            
             // Sinhronizovanje sa grafičkom kartom
             Toolkit.getDefaultToolkit().sync();
 
@@ -152,6 +176,8 @@ public class Board extends JPanel {
     void startGame() {
         inGame = false;
         postavljanjebrodova = true;
+        add(pocniIgru);
+        pocniIgru.setEnabled(false);
        
        repaint();
     }
@@ -176,9 +202,14 @@ public class Board extends JPanel {
             repaint();}
             if (inGame==false && postavljanjebrodova==true)
             {
-               
-                tabla1.postaviBrod(e.getX(),e.getY());
-            repaint();
+                if (tabla1.prebrojavanjeBrodova()<10)
+                { tabla1.postaviBrod(e.getX(),e.getY());
+                
+                    
+                repaint();}
+                if (tabla1.prebrojavanjeBrodova()==10)
+                pocniIgru.setEnabled(true);
+           
           
                 
             
