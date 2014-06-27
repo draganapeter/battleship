@@ -113,10 +113,10 @@ public class Board extends JPanel {
             Igraceva_tabla.draw(g2);
             
             if (Komp_tabla.prebrojavanjepotopljenih() == 10) {
-                g2.drawString("Igrac je pobijedio!", 330, 60);
+                    g2.drawString("POBJEDILI STE!!", 330, 60);
             }
             if (Igraceva_tabla.prebrojavanjepotopljenih() == 10) {
-                g2.drawString("Kompjuter je pobijedio!", 305, 60);
+                g2.drawString("IZGUBILI STE!", 305, 60);
             }
 
             // Sinhronizovanje sa grafičkom kartom
