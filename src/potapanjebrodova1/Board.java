@@ -91,6 +91,7 @@ public class Board extends JPanel {
         public void actionPerformed (ActionEvent e) {
             inGame=true;
             postavljanjebrodova=false;
+            remove(pocniIgru);
             repaint();
         }
 
