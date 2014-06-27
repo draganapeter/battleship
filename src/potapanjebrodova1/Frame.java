@@ -22,15 +22,12 @@ import javax.swing.JMenuItem;
 public class Frame extends JFrame {
 
     Board board = new Board();
-  
+
     JButton pocniIgru;
-  
+
     public Frame() {
-       
+
         add(board);
-        
-       
-      
 
         setJMenuBar(initMenu());
 
@@ -49,33 +46,29 @@ public class Frame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         // Mapravimo meni
-        JMenu gameMenu = new JMenu("Game");
+        JMenu gameMenu = new JMenu("Igra");
 
         // Napravimo stavku za meni
-        JMenuItem newGame = new JMenuItem("New game");
-        newGame.addActionListener(new ActionListener() {
+        JMenuItem novaIgra = new JMenuItem("Nova igra");
+        novaIgra.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                board.startGame();
-                
+                board.PocniIgru();
+
             }
 
         }
         );
-       
-       
 
         // Dodamo stavku u meni
-        gameMenu.add(newGame);
-       
+        gameMenu.add(novaIgra);
 
         // Dodamo meni u liniju menija
         menuBar.add(gameMenu);
 
         return menuBar;
-        
+
     }
 
 }
-

@@ -10,27 +10,18 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Random;
 
-/**
- *
- * @author S
- */
-public class Polje extends Rectangle.Double implements Objects {
 
- 
+public class Polje extends Rectangle.Double implements Objects {
 
     boolean imaBrod, brodpostavljen, gadjano;
 
     Random r;
 
-    
-
     public Polje(int row, int col) {
 
        // r = new Random();
-
-       
         //this.imaBrod = r.nextBoolean();
-        gadjano=false;
+        gadjano = false;
         x = row * 30;
         y = col * 30;
         width = height = 30;
@@ -38,14 +29,11 @@ public class Polje extends Rectangle.Double implements Objects {
 
     public void Gadjaj() {
 
-       
-            gadjano = true;
-           
+        gadjano = true;
 
             //System.out.println("POGODAK!");
-        
     }
-    
+
     private final Color bojaPromasenog = new Color(72, 118, 255);
     private final Color bojaPogodjenog = Color.RED;
     private final Color borderColor = Color.BLACK;
@@ -60,14 +48,14 @@ public class Polje extends Rectangle.Double implements Objects {
         } else if (gadjano && imaBrod == false) {
             g2.setPaint(bojaPromasenog);
             g2.fill(this);
-        } else if (gadjano==false && brodpostavljen == false) {
+        } else if (gadjano == false && brodpostavljen == false) {
             g2.setPaint(pocetna);
             g2.fill(this);
-        } else if (gadjano==false && brodpostavljen == true) {
+        } else if (gadjano == false && brodpostavljen == true) {
             g2.setPaint(bojapostavljenog);
             g2.fill(this);
         }
-        
+
 
         g2.setPaint(borderColor);
         g2.draw(this);
