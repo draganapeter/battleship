@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import javax.swing.JPanel;
-import potapanjebrodova1.Polje.Stanje;
+
 
 public class Tabla extends JPanel implements Objects {
 
@@ -42,15 +42,21 @@ public class Tabla extends JPanel implements Objects {
 
     }
 
-    public void checkForHit(int x, int y) {
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                if (polja[i][j].contains(x, y)) {
+    public boolean checkForHit(int x, int y) {
+       int b=0;
+        for (int i = 0; i < ROWS; i++) 
+            for (int j = 0; j < COLS; j++) 
+                if (polja[i][j].contains(x, y) && polja[i][j].gadjano==false) {
+                    b=b+1;
                     polja[i][j].Gadjaj();
+                  
                 }
-            }
-        }
+        
+            
+        
+        return b==1;
     }
+   
 
     /**
      *
@@ -126,7 +132,7 @@ public class Tabla extends JPanel implements Objects {
         E = new ArrayList <>();
         for (int i=0; i<10; i++)
             for (int j=0; j<10; j++) 
-                if (polja[i][j].stanje==Stanje.NEGADJANO)
+                if (polja[i][j].gadjano==false)
                 E.add(polja[i][j]);
         Set <Polje> Res;
         Res = new HashSet<>();

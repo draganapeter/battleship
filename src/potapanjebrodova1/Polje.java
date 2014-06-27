@@ -16,24 +16,21 @@ import java.util.Random;
  */
 public class Polje extends Rectangle.Double implements Objects {
 
-    enum Stanje {
+ 
 
-        NEGADJANO, GADJANO
-    }
-
-    boolean imaBrod, brodpostavljen;
+    boolean imaBrod, brodpostavljen, gadjano;
 
     Random r;
 
-    public Stanje stanje;
+    
 
     public Polje(int row, int col) {
 
        // r = new Random();
 
-        this.stanje = Stanje.NEGADJANO;
+       
         //this.imaBrod = r.nextBoolean();
-
+        gadjano=false;
         x = row * 30;
         y = col * 30;
         width = height = 30;
@@ -41,13 +38,14 @@ public class Polje extends Rectangle.Double implements Objects {
 
     public void Gadjaj() {
 
-        if (stanje == Stanje.NEGADJANO) {
-            stanje = Stanje.GADJANO;
+       
+            gadjano = true;
+           
 
             //System.out.println("POGODAK!");
-        }
-
+        
     }
+    
     private final Color bojaPromasenog = new Color(72, 118, 255);
     private final Color bojaPogodjenog = Color.RED;
     private final Color borderColor = Color.BLACK;
@@ -56,16 +54,16 @@ public class Polje extends Rectangle.Double implements Objects {
 
     @Override
     public void draw(Graphics2D g2) {
-        if (stanje == Stanje.GADJANO && imaBrod == true) {
+        if (gadjano && imaBrod == true) {
             g2.setPaint(bojaPogodjenog);
             g2.fill(this);
-        } else if (stanje == Stanje.GADJANO && imaBrod == false) {
+        } else if (gadjano && imaBrod == false) {
             g2.setPaint(bojaPromasenog);
             g2.fill(this);
-        } else if (stanje == Stanje.NEGADJANO && brodpostavljen == false) {
+        } else if (gadjano==false && brodpostavljen == false) {
             g2.setPaint(pocetna);
             g2.fill(this);
-        } else if (stanje == Stanje.NEGADJANO && brodpostavljen == true) {
+        } else if (gadjano==false && brodpostavljen == true) {
             g2.setPaint(bojapostavljenog);
             g2.fill(this);
         }

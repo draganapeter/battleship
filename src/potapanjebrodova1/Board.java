@@ -134,6 +134,11 @@ public class Board extends JPanel {
             // Iscrtaj sve objekte
             tabla.draw(g2);
             tabla1.draw(g2);
+            //if (tabla.prebrojavanjeBrodova()==0)
+            //g2.drawString("Igrac je pobijedio.",330,60);
+            //if (tabla1.prebrojavanjeBrodova()==10)
+            //g2.drawString("Kompjuter je pobijedio.",330,60);
+                 
            
 
             // Sinhronizovanje sa grafičkom kartom
@@ -196,8 +201,10 @@ public class Board extends JPanel {
 
             //System.out.println("kliknuto na: " + e.getX() + ", " + e.getY());
             if (inGame==true)
-            {tabla.checkForHit(e.getX(), e.getY());
-            repaint();
+           
+            
+         if (tabla.checkForHit(e.getX(), e.getY())==true)
+         {repaint();
             tabla1.gadjanjeKomp();
             repaint();}
             if (inGame==false && postavljanjebrodova==true)
