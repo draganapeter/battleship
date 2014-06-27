@@ -134,10 +134,10 @@ public class Board extends JPanel {
             // Iscrtaj sve objekte
             tabla.draw(g2);
             tabla1.draw(g2);
-            //if (tabla.prebrojavanjeBrodova()==0)
-            //g2.drawString("Igrac je pobijedio.",330,60);
-            //if (tabla1.prebrojavanjeBrodova()==10)
-            //g2.drawString("Kompjuter je pobijedio.",330,60);
+            if (tabla.prebrojavanjepotopljenih()==10)
+            g2.drawString("Igrac je pobijedio.",330,60);
+            if (tabla1.prebrojavanjepotopljenih()==10)
+            g2.drawString("Kompjuter je pobijedio.",305,60);
                  
            
 
